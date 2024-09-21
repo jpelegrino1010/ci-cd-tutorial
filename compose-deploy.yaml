@@ -1,7 +1,6 @@
 services:
   app:
     image: "jpelegrino/mavenproject:${BUILD_TAG}"
-    container_name: "${CONTAINER_NAME}"
     ports:
       - 8097:8097
     environment:
