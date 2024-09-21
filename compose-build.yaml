@@ -1,0 +1,9 @@
+services:
+  app:
+    image: "app:${BUILD_TAG}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+
+
