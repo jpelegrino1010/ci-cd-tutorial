@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh '''
                 mvn -B -DskipTests clean package
-                ./scripts/build.sh
+                sudo ./scripts/build.sh
 
                 '''
 
@@ -26,13 +26,13 @@ pipeline {
 
         stage('Push') {
             steps {
-                sh './scripts/push.sh '
+                sh 'sudo ./scripts/push.sh '
             }
         }
 
         stage('Deploy') {
             steps {
-                sh './scripts/deploy.sh '
+                sh 'sudo ./scripts/deploy.sh '
             }
         }
 
