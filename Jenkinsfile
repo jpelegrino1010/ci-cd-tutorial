@@ -11,8 +11,7 @@ pipeline {
             steps {
                 sh '''
                 mvn -B -DskipTests clean package
-                chmod +x compose-build.yaml
-                docker-compose -f compose-build.yaml build
+                ./scripts/build.sh
 
                 '''
 
@@ -27,29 +26,13 @@ pipeline {
 
         stage('Push') {
             steps {
-                sh '''
-                    echo "**************************************"
-                    echo "********** Pushing Image *************"
-                    echo "**************************************"
-
-                    IMAGE="mavenproject"
-                    LOCAL_IMAGE="app"
-
-
-                    echo "****** Logging In ************"
-                    docker login -u jpelegrino -p $PASS
-                    echo "***Tagging Image **************"
-                    docker tag $LOCAL_IMAGE:$BUILD_TAG jpelegrino/$IMAGE:$BUILD_TAG
-                    echo "********** Pushing ************"
-                    docker push jpelegrino/$IMAGE:$BUILD_TAG
-
-                    '''
+                sh './scripts/push.sh '
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker compose -f compose-deploy.yaml up '
+                sh './scripts/deploy.sh '
             }
         }
 
