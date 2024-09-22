@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:21
 
 COPY target/ci-cd-tutorial.jar ci-cd-tutorial.jar
 
