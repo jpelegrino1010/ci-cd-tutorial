@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh '''
                 mvn -B -DskipTests clean package
-                ./build.sh
+                docker-compose -f compose-build.yaml build
 
                 '''
 
