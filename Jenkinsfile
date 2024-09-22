@@ -9,11 +9,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '''
-                mvn -B -DskipTests clean package
-                docker-compose -f compose-build.yaml build
-
-                '''
+                sh 'mvn -B -DskipTests clean package  '
+                sh 'docker-compose -f compose-build.yaml build'
 
             }
         }
