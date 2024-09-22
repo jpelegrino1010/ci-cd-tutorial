@@ -12,8 +12,9 @@ pipeline {
                 sh '''
                 mvn -B -DskipTests clean package
                 pwd
+                ls 
                 docker-compose -f compose-build.yaml build
-                ls
+
 
                 '''
 
